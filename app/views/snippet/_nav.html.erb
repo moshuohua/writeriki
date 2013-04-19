@@ -1,0 +1,137 @@
+<!-- global nav file -->
+
+<div class="navbar navbar-fixed-top navbar-googlenav">
+  <div class="navbar-inner">
+    <div class="container">
+      <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <div class="nav-collapse collapse">
+        <ul class="nav">
+          <li>
+            <a class="brand" href="">Writeriki</a>
+          </li>
+          <li class="divider-vertical"></li>
+          <li class="">
+            <a href="">首页</a>
+          </li>
+          <li class="">
+            <%= link_to '项目' %>
+          </li>
+          <li class="">
+            <%= link_to '进程', process_index_path %>
+          </li>
+          <li class="">
+            <%= link_to '日历', calendar_path %>
+          </li>
+          <li class="divider-vertical"></li>
+          <li class="dropdown active">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+              文档
+              <b class="caret"></b>
+            </a>
+            <ul class="dropdown-menu">
+              <li class="divider"></li>
+              <li><%= link_to '查看所有文档', docs_path %></li>
+              <li><%= link_to '你创建的文档', mydoc_index_path %></li>
+              <li class="divider"></li>
+              <li><%= link_to '创建新文档', new_doc_path %></li>
+              <li class="divider"></li>
+            </ul>
+          </li>
+          <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+              事务
+              <b class="caret"></b>
+            </a>
+            <ul class="dropdown-menu">
+              <li class="divider"></li>
+              <li><%= link_to '查看所有事务', events_path %></li>
+              <li><%= link_to '由你创建的事务', myevent_index_path %></li>
+              <li><a href="#"></a></li>
+              <li><a href="#"><strong>与你有关的事务</strong></a></li>
+              <li class="divider"></li>
+              <li><%= link_to '创建新事务', new_event_path %></li>
+              <li class="divider"></li>
+            </ul>
+          </li>
+          <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+              文件
+              <b class="caret"></b>
+            </a>
+            <ul class="dropdown-menu">
+              <li class="divider"></li>
+              <li><a href="#">浏览所有文件</a></li>
+              <li><a href="#">我收藏的文件</a></li>
+              <li class="divider"></li>
+              <li><a href="#">上传新文件</a></li>
+              <li><a href="#">添加站外下载链接</a></li>
+              <li class="divider"></li>
+            </ul>
+          </li>
+          <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+              讨论
+              <b class="caret"></b>
+            </a>
+            <ul class="dropdown-menu">
+              <li class="divider"></li>
+              <li><%= link_to '查看所有讨论' %></li>
+              <li><a href="#">我参见的讨论</a></li>
+              <li class="divider"></li>
+              <li><%= link_to '发起新讨论' %></li>
+              <li class="divider"></li>
+            </ul>
+          </li>
+          <li class="dropdown">
+            <a class="dropdown-toggle" data-toggle="dropdown" href="#">资源 <b class="caret"></b></a>
+            <ul class="dropdown-menu">
+              <li class="divider"></li>
+              <li><a href="#">查看所有文档</a></li>
+              <li><a href="#">查看所有事务</a></li>
+              <li><a href="#">查看所有文件</a></li>
+              <li><a href="#">查看所有讨论</a></li>
+              <li class="divider"></li>
+            </ul>
+          </li>
+        </ul>
+        <ul class="nav pull-right">
+          <li class="divider-vertical"></li>
+
+          <% if user_signed_in? %>
+              <li class="dropdown">
+                <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                  <%= current_user.username %>
+                  <b class="caret"></b>
+                  <%= image_tag avatar_url(current_user), class:"gravatar-style" %>
+                </a>
+                <ul class="dropdown-menu">
+                  <li class="divider"></li>
+                  <li><a href="#"><%= current_user.email %></a></li>
+                  <li>
+                    <%= link_to('登出', destroy_user_session_path, :method => :delete) %>
+                  </li>
+                  <li>
+                    <%= link_to('帐号设置', edit_user_registration_path) %>
+                  </li>
+                  <li class="divider"></li>
+                </ul>
+              </li>
+          <% else %>
+              <li>
+                <%= link_to('登录', new_user_session_path) %>
+              </li>
+              <li>
+                <%= link_to('注册', new_user_registration_path) %>
+              </li>
+          <% end %>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+<hr style="margin:47px 0px 10px 0px;">

@@ -1,0 +1,50 @@
+
+  <h3 class="title-border-left">
+    All docs
+  </h3>
+
+  <button class="btn pull-right" style="margin-top: -46px;margin-right: 90px;">只看组长文档</button>
+
+  <div class="btn-group pull-right" style="margin-top: -46px;">
+    <button class="btn">排序</button>
+    <button class="btn dropdown-toggle" data-toggle="dropdown">
+      <span class="caret"></span>
+    </button>
+    <ul class="dropdown-menu">
+      <li class="divider"></li>
+      <li>
+        <a href=""> 只浏览组长的文档</a>
+      </li>
+      <li>
+        <a href="">从最新排序</a>
+      </li>
+      <li>
+        <a href="">从旧时排序</a>
+      </li>
+      <li class="divider"></li>
+    </ul>
+  </div>
+
+  <hr>
+
+<table class="table table-bordered table-hover">
+  <tr>
+    <th class="table-mimi">创建者</th>
+    <th class="table-mimi">标题</th>
+    <th class="table-mimi">内容梗概</th>
+    <th class="table-mimi">关键词</th>
+  </tr>
+
+<% @docs.each do |doc| %>
+  <tr>
+    <td class="span1"><%= doc.user_id %></td>
+    <td class="span3"><%= link_to doc.title, doc %></td>
+    <td><%= doc.content %></td>
+    <td class="span3"><%= doc.keyword %></td>
+  </tr>
+<% end %>
+</table>
+
+<hr>
+
+<%= link_to 'New Doc', new_doc_path, class:"btn btn-danger" %>

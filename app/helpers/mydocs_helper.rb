@@ -1,0 +1,2 @@
+module MydocsHelper
+end

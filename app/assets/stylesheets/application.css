@@ -1,0 +1,37 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
+ * or vendor/assets/stylesheets of plugins, if any, can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the top of the
+ * compiled file, but it's generally better to create a new file per style scope.
+ *
+ *= require_self
+ *= require_tree .
+ *= require bootstrap-wysihtml5
+ *= require bootstrap-datepicker
+ */
+body {
+    background-image: url("/assets/bg.png");
+}
+.span11 {
+    background-color: #ffffff;
+    padding: 20px 42px;
+    border-radius: 5px;
+    filter:progid:DXImageTransform.Microsoft.Shadow(color=#909090,direction=120,strength=4);/*ie*/
+    -moz-box-shadow: 2px 2px 10px #909090;/*firefox*/
+    -webkit-box-shadow: 2px 2px 10px #909090;/*safari或chrome*/
+    box-shadow:2px 2px 10px #909090;/*opera或ie9*/
+}
+.table-mimi {
+    text-align: center !important;
+}
+.gravatar-style {
+    margin:-15px 2px -12px 7px;
+}
+.title-border-left {
+    border-left: 8px solid #d14533;
+    padding-left: 12px;
+}

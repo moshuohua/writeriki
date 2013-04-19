@@ -1,0 +1,19 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  name: MyString
+  content: MyText
+  level: MyString
+  appointment: MyString
+  start_at: 2013-04-18 15:59:05
+  end_at: 2013-04-18 15:59:05
+  user_id: 1
+
+two:
+  name: MyString
+  content: MyText
+  level: MyString
+  appointment: MyString
+  start_at: 2013-04-18 15:59:05
+  end_at: 2013-04-18 15:59:05
+  user_id: 1
