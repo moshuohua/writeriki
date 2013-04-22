@@ -1,35 +1,20 @@
 <h1>Listing projects</h1>
 
-<table>
+<table class="table table-bordered table-hover">
   <tr>
-    <th>Name</th>
-    <th>Description</th>
-    <th>Start at</th>
-    <th>End at</th>
-    <th></th>
-    <th></th>
-    <th></th>
+    <th class="table-mimi">Name</th>
+    <th class="table-mimi">Description</th>
+    <th class="table-mimi">Start at</th>
+    <th class="table-mimi">End at</th>
   </tr>
 
 <% @projects.each do |project| %>
   <tr>
-    <td><%= project.name %></td>
+    <td><%= link_to project.name, project %></td>
     <td><%= project.description %></td>
     <td><%= project.start_at %></td>
     <td><%= project.end_at %></td>
-    <% if project.user_id == current_user.id %>
-        <td><%= link_to 'Show', project %></td>
-        <td><%= link_to 'Edit', edit_project_path(project) %></td>
-        <td><%= link_to 'Destroy', project, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-    <% else %>
-        <td><%= link_to 'Show', project %></td>
-        <td></td>
-        <td></td>
-    <% end %>
+
   </tr>
 <% end %>
 </table>
-
-<br />
-
-<%= link_to 'New Project', new_project_path %>

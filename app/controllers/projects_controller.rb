@@ -41,7 +41,7 @@ class ProjectsController < ApplicationController
   def join
     @user = current_user
     @project = Project.find(params[:id])
-    @user.duties.create!(:project_id => @project.id, :user_id => @user.id)
+    Duty.create!(:project_id => @project.id, :user_id => @user.id)
 
     respond_to do |format|
       format.html { redirect_to projects_url }
@@ -52,7 +52,7 @@ class ProjectsController < ApplicationController
   def quit
     @user = current_user
     @project = Project.find(params[:id])
-    @project.duties.find_by_project_id(@project.id).destroy
+    Duty.find_by_project_id_and_user_id(@project.id,current_user.id).destroy
 
     respond_to do |format|
       format.html { redirect_to projects_url }
@@ -64,9 +64,9 @@ class ProjectsController < ApplicationController
   # POST /projects.json
   def create
     @user = current_user
-    @project = @user.projects.new(params[:project])
+    @project = Project.new(params[:project])
     @project.user_id = @user.id
-    @project.duties.build(:user_id => @user.id, :project_id => @project.id)
+    @project.duties.build( :project_id => @project.id, :user_id => @user.id )
 
     respond_to do |format|
       if @project.save

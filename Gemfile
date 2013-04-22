@@ -9,7 +9,6 @@ source 'http://ruby.taobao.org'
 
 # editor
   gem 'bootstrap-wysihtml5-rails'
-  gem 'ckeditor_rails'
 
 #authentication and role
   gem 'devise'
