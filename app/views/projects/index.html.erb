@@ -1,19 +1,46 @@
-<h1>Listing projects</h1>
+<h3 class="title-border-left">
+  All Projects
+</h3>
+
+<button class="btn pull-right" style="margin-top: -46px;margin-right: 90px;">只看组长文档</button>
+
+<div class="btn-group pull-right" style="margin-top: -46px;">
+  <button class="btn">排序</button>
+  <button class="btn dropdown-toggle" data-toggle="dropdown">
+    <span class="caret"></span>
+  </button>
+  <ul class="dropdown-menu">
+    <li class="divider"></li>
+    <li>
+      <a href="">起始时间排序</a>
+    </li>
+    <li>
+      <a href="">从最新排序</a>
+    </li>
+    <li>
+      <a href="">从旧时排序</a>
+    </li>
+    <li class="divider"></li>
+  </ul>
+  
+</div>
+
+<hr>
 
 <table class="table table-bordered table-hover">
   <tr>
-    <th class="table-mimi">Name</th>
-    <th class="table-mimi">Description</th>
-    <th class="table-mimi">Start at</th>
-    <th class="table-mimi">End at</th>
+    <th class="table-mimi span3">项目名称</th>
+    <th class="table-mimi">项目描述</th>
+    <th class="table-mimi span2">起始时间</th>
+    <th class="table-mimi span2">结束时间</th>
   </tr>
 
 <% @projects.each do |project| %>
   <tr>
     <td><%= link_to project.name, project %></td>
     <td><%= project.description %></td>
-    <td><%= project.start_at %></td>
-    <td><%= project.end_at %></td>
+    <td class="table-mimi"><%= project.start_at.strftime("%Y-%m-%d") %></td>
+    <td class="table-mimi"><%= project.end_at.strftime("%Y-%m-%d") %></td>
 
   </tr>
 <% end %>
