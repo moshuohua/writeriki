@@ -1,8 +1,9 @@
 class ProjectsController < ApplicationController
+  before_filter :authenticate_user!
   # GET /projects
   # GET /projects.json
   def index
-    @projects = current_user.projects
+    @projects = Project.all
 
     respond_to do |format|
       format.html # index.html.erb
@@ -37,13 +38,35 @@ class ProjectsController < ApplicationController
     @project = Project.find(params[:id])
   end
 
+  def join
+    @user = current_user
+    @project = Project.find(params[:id])
+    @user.duties.create!(:project_id => @project.id, :user_id => @user.id)
+
+    respond_to do |format|
+      format.html { redirect_to projects_url }
+    end
+
+  end
+
+  def quit
+    @user = current_user
+    @project = Project.find(params[:id])
+    @project.duties.find_by_project_id(@project.id).destroy
+
+    respond_to do |format|
+      format.html { redirect_to projects_url }
+    end
+
+  end
+
   # POST /projects
   # POST /projects.json
   def create
     @user = current_user
     @project = @user.projects.new(params[:project])
     @project.user_id = @user.id
-    @project.user_projectships.build(:user_id => @user.id, :project_id => @project.id)
+    @project.duties.build(:user_id => @user.id, :project_id => @project.id)
 
     respond_to do |format|
       if @project.save

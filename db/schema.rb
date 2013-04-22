@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130420130215) do
+ActiveRecord::Schema.define(:version => 20130421163553) do
 
   create_table "docs", :force => true do |t|
     t.string   "title"
@@ -23,6 +23,17 @@ ActiveRecord::Schema.define(:version => 20130420130215) do
   end
 
   add_index "docs", ["user_id", "created_at"], :name => "index_docs_on_user_id_and_created_at"
+
+  create_table "duties", :force => true do |t|
+    t.integer  "user_id"
+    t.integer  "project_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  add_index "duties", ["project_id"], :name => "index_duties_on_project_id"
+  add_index "duties", ["user_id", "project_id"], :name => "index_duties_on_user_id_and_project_id", :unique => true
+  add_index "duties", ["user_id"], :name => "index_duties_on_user_id"
 
   create_table "events", :force => true do |t|
     t.string   "name"
@@ -49,17 +60,6 @@ ActiveRecord::Schema.define(:version => 20130420130215) do
   end
 
   add_index "projects", ["user_id"], :name => "index_projects_on_user_id"
-
-  create_table "user_projectships", :force => true do |t|
-    t.integer  "user_id"
-    t.integer  "project_id"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
-  end
-
-  add_index "user_projectships", ["project_id"], :name => "index_user_projectships_on_project_id"
-  add_index "user_projectships", ["user_id", "project_id"], :name => "index_user_projectships_on_user_id_and_project_id", :unique => true
-  add_index "user_projectships", ["user_id"], :name => "index_user_projectships_on_user_id"
 
   create_table "users", :force => true do |t|
     t.string   "email",                  :default => "", :null => false

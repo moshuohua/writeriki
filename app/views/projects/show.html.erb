@@ -19,6 +19,11 @@
   <b>End at:</b>
   <%= @project.end_at %>
 </p>
+ <% if @project.duties.present? %>
+    <%= link_to '退出项目', quit_project_path, :class => 'btn btn-danger' %>
+ <% else %>
+    <%= link_to '加入项目', join_project_path, :class => 'btn btn-success' %>
+ <% end %>
 
 
 <%= link_to 'Edit', edit_project_path(@project) %> |

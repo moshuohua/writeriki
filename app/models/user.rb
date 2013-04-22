@@ -10,8 +10,8 @@ class User < ActiveRecord::Base
 
   has_many :docs, dependent: :destroy
   has_many :events
-  has_many :projects, :through => :user_projectships
-  has_many :user_projectships, :dependent => :destroy
+  has_many :projects, :through => :duties
+  has_many :duties, :dependent => :destroy
 
 
   def self.find_first_by_auth_conditions(warden_conditions)

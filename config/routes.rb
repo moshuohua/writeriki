@@ -6,8 +6,13 @@ Writeriki::Application.routes.draw do
 
   resources :events
   resources :docs
-  resources :projects
+  resources :projects do
+    member do
+      get :join,:quit
+    end
+  end
 
+  match '/myproject/index' => 'myprojects#index'
   match '/mydoc/index' => 'mydocs#index'
   match '/myevent/index' => 'myevents#index'
   match '/process/index' => 'processes#index'

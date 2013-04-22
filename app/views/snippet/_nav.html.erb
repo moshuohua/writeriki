@@ -1,6 +1,6 @@
 <!-- global nav file -->
 
-<div class="navbar navbar-fixed-top navbar-googlenav navbar-inverse">
+<div class="navbar navbar-fixed-top navbar-googlenav">
   <div class="navbar-inner">
     <div class="container">
       <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
@@ -15,10 +15,10 @@
           </li>
           <li class="divider-vertical"></li>
           <li class="">
-            <a href="">首页</a>
+            <%= link_to '首页', projects_path %>
           </li>
           <li class="">
-            <%= link_to '项目', projects_path %>
+            <%= link_to '我的项目', myproject_index_path %>
           </li>
           <li class="">
             <%= link_to '进程', process_index_path %>
