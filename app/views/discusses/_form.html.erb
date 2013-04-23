@@ -1,0 +1,24 @@
+<%= form_for(@discuss) do |f| %>
+  <% if @discuss.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@discuss.errors.count, "error") %> prohibited this discuss from being saved:</h2>
+      <ul>
+      <% @discuss.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :title %>
+    <%= f.text_field :title, class:'span7' %>
+  </div>
+  <div class="field">
+    <%= f.label :content %>
+    <%= f.text_area :content, class:'wysihtml5', :style => "width:570px; height:100px;" %>
+  </div>
+  <div class="actions">
+    <%= f.submit(:class => "btn btn-success") %>
+  </div>
+<% end %>

@@ -1,5 +1,8 @@
 Writeriki::Application.routes.draw do
 
+  resources :discusses
+
+
   match '/calendar(/:year(/:month))' => 'calendar#index', :as => :calendar, :constraints => {:year => /\d{4}/, :month => /\d{1,2}/}
 
   devise_for :users

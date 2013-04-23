@@ -33,3 +33,25 @@
 <br />
 
 <%= link_to 'New Project', new_project_path %>
+
+<hr>
+
+<h1>Listing projects</h1>
+
+<table>
+  <tr>
+    <th>Name</th>
+    <th>Description</th>
+    <th>Start at</th>
+    <th>End at</th>
+  </tr>
+
+  <% @joinings.each do |joining| %>
+      <tr>
+        <td><%= joining.name %></td>
+        <td><%= joining.description %></td>
+        <td><%= joining.start_at %></td>
+        <td><%= joining.end_at %></td>
+      </tr>
+  <% end %>
+</table>

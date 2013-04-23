@@ -79,10 +79,10 @@
             </a>
             <ul class="dropdown-menu">
               <li class="divider"></li>
-              <li><%= link_to '查看所有讨论' %></li>
-              <li><a href="#">我参见的讨论</a></li>
+              <li><%= link_to '查看所有讨论', discusses_path %></li>
+              <li><a href="#">我参加的讨论</a></li>
               <li class="divider"></li>
-              <li><%= link_to '发起新讨论' %></li>
+              <li><%= link_to '发起新讨论', new_discuss_path %></li>
               <li class="divider"></li>
             </ul>
           </li>
@@ -99,8 +99,7 @@
           </li>
         </ul>
         <ul class="nav pull-right">
-          <li class="divider-vertical"></li>
-
+          <li class="divider-vertical" style="margin-right:-2px;"></li>
           <% if user_signed_in? %>
               <li class="dropdown">
                 <a class="dropdown-toggle" data-toggle="dropdown" href="#">

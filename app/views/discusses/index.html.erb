@@ -1,0 +1,25 @@
+<h1>Listing discusses</h1>
+
+<table>
+  <tr>
+    <th>Title</th>
+    <th>Content</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @discusses.each do |discuss| %>
+  <tr>
+    <td><%= discuss.title %></td>
+    <td><%= discuss.content %></td>
+    <td><%= link_to 'Show', discuss %></td>
+    <td><%= link_to 'Edit', edit_discuss_path(discuss) %></td>
+    <td><%= link_to 'Destroy', discuss, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Discuss', new_discuss_path, class:'btn btn-danger' %>

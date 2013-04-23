@@ -10,12 +10,12 @@
 
 <p>
   <b>起始时间:</b>
-  <%= @project.start_at %>
+  <%= @project.start_at.strftime("%Y-%m-%d") %>
 </p>
 
 <p>
   <b>结束时间:</b>
-  <%= @project.end_at %>
+  <%= @project.end_at.strftime("%Y-%m-%d") %>
 </p>
 
 <% if @project.user_id == current_user.id %>
@@ -27,5 +27,5 @@
     <%= link_to '加入项目', join_project_path, :class => 'btn btn-success' %>
 <% end %>
 
-<%= link_to 'Back', projects_path %>
+<%= link_to '返回', projects_path %>
 

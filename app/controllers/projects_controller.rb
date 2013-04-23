@@ -66,7 +66,7 @@ class ProjectsController < ApplicationController
     @user = current_user
     @project = Project.new(params[:project])
     @project.user_id = @user.id
-    @project.duties.build( :project_id => @project.id, :user_id => @user.id )
+    #@project.duties.build( :project_id => @project.id, :user_id => @user.id )
 
     respond_to do |format|
       if @project.save
