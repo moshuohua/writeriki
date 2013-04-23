@@ -46,12 +46,16 @@
     <th>End at</th>
   </tr>
 
-  <% @joinings.each do |joining| %>
-      <tr>
-        <td><%= joining.name %></td>
-        <td><%= joining.description %></td>
-        <td><%= joining.start_at %></td>
-        <td><%= joining.end_at %></td>
-      </tr>
+  <% @joinings.each do |pro| %>
+      <% if pro.user_id == current_user.id  %>
+          <% @pros.each do |pro| %>
+            <tr>
+                <td><%= pro.name %></td>
+                <td><%= pro.description %></td>
+                <td><%= pro.start_at %></td>
+                <td><%= pro.end_at %></td>
+            </tr>
+          <% end %>
+      <% end %>
   <% end %>
 </table>
