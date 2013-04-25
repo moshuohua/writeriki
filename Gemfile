@@ -17,6 +17,8 @@ source 'http://ruby.taobao.org'
 
 # Attachment
   gem 'mime-types'
+  gem 'carrierwave'
+  gem 'rmagick'
 
 #calendar
   gem 'event-calendar', :require => 'event_calendar'

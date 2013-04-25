@@ -105,7 +105,7 @@
                 <a class="dropdown-toggle" data-toggle="dropdown" href="#">
                   <%= current_user.username %>
                   <b class="caret"></b>
-                  <%= image_tag avatar_url(current_user), class:"gravatar-style" %>
+                  <%= image_tag current_user.avatar.url(:thumb), class:'gravatar-style' %>
                 </a>
                 <ul class="dropdown-menu">
                   <li class="divider"></li>
