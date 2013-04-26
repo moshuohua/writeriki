@@ -5,4 +5,5 @@ class Project < ActiveRecord::Base
 
   has_many :docs
   has_many :events
+  has_many :discusses
 end

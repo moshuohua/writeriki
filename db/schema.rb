@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130425114606) do
+ActiveRecord::Schema.define(:version => 20130426072728) do
 
   create_table "discusses", :force => true do |t|
     t.string   "title"
@@ -27,6 +27,7 @@ ActiveRecord::Schema.define(:version => 20130425114606) do
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
     t.integer  "user_id"
+    t.integer  "project_id"
   end
 
   add_index "docs", ["user_id", "created_at"], :name => "index_docs_on_user_id_and_created_at"
