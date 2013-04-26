@@ -11,11 +11,15 @@
     </div>
   <% end %>
 
-  <div>
+  <div class="field">
     <%= f.label :project_name %>
     <% projects_array = Project.all.map { |project| [project.name, project.id] } %>
-    <%= f.select :project_id, options_for_select(projects_array) %>
+    <%= f.select :project_id, options_for_select(projects_array),{}, :id => 'e1',:class => 'span3' %>
   </div>
+
+    <script>
+        $(document).ready(function() { $("#e1").select2(); });
+    </script>
 
   <div class="field">
     <%= f.label :title %>

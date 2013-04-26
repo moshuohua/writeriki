@@ -12,6 +12,7 @@
  *= require_tree .
  *= require bootstrap-wysihtml5
  *= require bootstrap-datepicker
+ *= require select2
  */
 body {
     background-image: url("/assets/bg.png");

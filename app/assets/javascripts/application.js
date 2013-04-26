@@ -15,8 +15,7 @@
 //= require_tree .
 //= require twitter/bootstrap
 //= require bootstrap-wysihtml5
-//= require bootstrap-datepicker
 //= require event_calendar
-
+//= require select2
 
 
