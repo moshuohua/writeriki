@@ -31,3 +31,18 @@
 
 <hr>
 
+<!-- 在此项目下的所有文档 -->
+<% @project.docs.each do |doc| %>
+    <tr>
+      <td class="span3"><%= link_to doc.title, doc %></td>
+      <td><%= doc.content %></td>
+      <td class="span3"><%= doc.keyword %></td>
+    </tr>
+<% end %>
+
+<!-- 在此项目下的所有事务 -->
+
+<!-- 在此项目下的所有讨论 -->
+
+<!-- 在此项目下的所有文件资源 -->
+
