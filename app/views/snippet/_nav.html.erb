@@ -64,11 +64,11 @@
             </a>
             <ul class="dropdown-menu">
               <li class="divider"></li>
-              <li><a href="#">浏览所有文件</a></li>
+              <li><%= link_to '浏览所有文件', attachments_path %></li>
               <li><a href="#">我收藏的文件</a></li>
               <li class="divider"></li>
-              <li><a href="#">上传新文件</a></li>
-              <li><a href="#">添加站外下载链接</a></li>
+              <li><a href="#"></a></li>
+              <li><%= link_to '上传新文件', new_attachment_path %></li>
               <li class="divider"></li>
             </ul>
           </li>
@@ -145,7 +145,7 @@
       </button>
       <div class="nav-collapse collapse">
         <form class="navbar-form pull-left">
-          <input type="text" style="width: 832px;">
+          <input type="text" style="width: 832px;" x-webkit-speech>
           <button type="submit" class="btn btn-info">快速搜索</button>
         </form>
       </div>

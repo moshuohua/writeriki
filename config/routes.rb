@@ -7,7 +7,7 @@ Writeriki::Application.routes.draw do
   resources :attachments
   resources :discusses
   resources :events
-
+  
   resources :docs do
     resources :comments
   end

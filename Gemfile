@@ -19,6 +19,7 @@ source 'http://ruby.taobao.org'
   gem 'mime-types'
   gem 'carrierwave'
   gem 'rmagick'
+  gem "jquery-fileupload-rails"
 
 #calendar
   gem 'event-calendar', :require => 'event_calendar'

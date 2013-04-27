@@ -13,6 +13,7 @@
  *= require bootstrap-wysihtml5
  *= require bootstrap-datepicker
  *= require select2
+ *= require jquery.fileupload-ui
  */
 body {
     background-image: url("/assets/bg.png");

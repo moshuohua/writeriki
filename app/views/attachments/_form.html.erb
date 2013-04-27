@@ -1,7 +1,8 @@
-<%= form_for(@attachment) do |f| %>
+<%= form_for @attachment,:html => {:class => 'form-hori'} do |f| %>
   <% if @attachment.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(@attachment.errors.count, "error") %> prohibited this attachment from being saved:</h2>
+      <h2><%= pluralize(@attachment.errors.count, "error") %> 
+        prohibited this attachment from being saved:</h2>
 
       <ul>
       <% @attachment.errors.full_messages.each do |msg| %>
@@ -12,16 +13,18 @@
   <% end %>
 
   <div class="field">
-    <%= f.label :name %><br />
+    <%= f.label :name %>
     <%= f.text_field :name %>
   </div>
   <div class="field">
-    <%= f.label :description %><br />
-    <%= f.text_area :description %>
+    <%= f.label :description %>
+    <%= f.text_area :description, class:'wysihtml5',:style => 'width:570px; height:100px;' %>
   </div>
   <div class="field">
-    <%= f.label :attachment %><br />
-    <%= f.text_field :attachment %>
+    <%= f.label :attachment %>
+    <div class="btn">
+      <%= f.file_field :attachment %>
+    </div>
   </div>
   <div class="actions">
     <%= f.submit %>
