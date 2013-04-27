@@ -2,6 +2,8 @@
 
 class AttachmentUploader < CarrierWave::Uploader::Base
 
+  CarrierWave::SanitizedFile.sanitize_regexp = /[^[:word:]\.\-\+]/
+  
   # Include RMagick or MiniMagick support:
   include CarrierWave::RMagick
   # include CarrierWave::MiniMagick
