@@ -1,5 +1,8 @@
 Writeriki::Application.routes.draw do
 
+  resources :attachments
+
+
   resources :discusses
 
 

@@ -39,10 +39,19 @@
       <td class="span3"><%= doc.keyword %></td>
     </tr>
 <% end %>
+<hr>
 
 <!-- 在此项目下的所有事务 -->
+<% @project.events.each do |event| %>
+
+<% end %>
+<hr>
 
 <!-- 在此项目下的所有讨论 -->
+<% @project.discusses.each do |discuss| %>
+
+<% end %>
+<hr>
 
 <!-- 在此项目下的所有文件资源 -->
 
