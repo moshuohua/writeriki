@@ -13,16 +13,18 @@ source 'http://ruby.taobao.org'
 #authentication and role
   gem 'devise'
   gem 'cancan'
-  gem 'rolify'
 
 # Attachment
   gem 'mime-types'
   gem 'carrierwave'
   gem 'rmagick'
-  gem "jquery-fileupload-rails"
+
+# @ style for discuss
+  gem 'jquery-atwho-rails'
 
 #calendar
   gem 'event-calendar', :require => 'event_calendar'
+  gem 'bootstrap-datepicker-rails'
 
 # Gems used only for assets and not required
 # in production environments by default.
@@ -31,7 +33,6 @@ group :assets do
   gem 'coffee-rails', '~> 3.2.1'
   gem 'bootstrap-sass-rails'
   gem 'bootstrap-google-sass'
-  gem 'bootstrap-datepicker-rails'
 
   # See https://github.com/sstephenson/execjs#readme for more supported runtimes
   # gem 'therubyracer', :platforms => :ruby

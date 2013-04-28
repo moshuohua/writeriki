@@ -17,6 +17,6 @@
 //= require bootstrap-wysihtml5
 //= require event_calendar
 //= require select2
-//= require jquery-fileupload
-
+//= require jquery.atwho
+//= require bootstrap-datepicker
 

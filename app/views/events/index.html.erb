@@ -14,14 +14,15 @@
     <th></th>
   </tr>
 
+
 <% @events.each do |event| %>
   <tr>
     <td><%= event.name %></td>
     <td><%= event.content %></td>
     <td><%= event.level %></td>
     <td><%= event.appointment %></td>
-    <td><%= event.start_at %></td>
-    <td><%= event.end_at %></td>
+    <td><%= event.start_at.strftime("%Y-%m-%d") %></td>
+    <td><%= event.end_at.strftime("%Y-%m-%d") %></td>
     <td><%= event.user_id %></td>
     <td><%= link_to 'Show', event %></td>
     <td><%= link_to 'Edit', edit_event_path(event) %></td>
