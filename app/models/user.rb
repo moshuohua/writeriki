@@ -15,7 +15,8 @@ class User < ActiveRecord::Base
   validates_processing_of :avatar
 
   has_many :docs
-  has_many :events
+  has_many :events, :through => :tasks
+  has_many :tasks, :dependent => :destroy
   has_many :projects, :through => :duties
   has_many :duties, :dependent => :destroy
 

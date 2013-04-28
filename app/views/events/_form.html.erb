@@ -52,13 +52,13 @@
 
   <div class="control-group">
     <%= f.label :appointment, class:"control-label" %>
-    <% appointment_array = User.all.map { |current_user| [current_user.username] } %>
+    <% appointment_array = User.all.map { |current_user| [current_user.username, current_user.id] } %>
     <%= f.select :appointment, options_for_select(appointment_array),{}, :id => 'e3',:class => 'span4' %>
   </div>
 
   <div class="control-group">
     <div class="controls">
-      <%= f.submit '提交', class: "btn btn-info btn-large" %>
+      <%= f.submit '提交事务', class: "btn btn-info btn-large" %>
       <%= link_to '返回', events_path, class:'btn btn-danger btn-small' %>
     </div>
   </div>
