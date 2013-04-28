@@ -1,5 +1,5 @@
 <h3 class="title-border-left">
-  Projects
+  Projects created by yourself
 </h3>
 
 <%= link_to 'New Project', new_project_path, class:'btn btn-info pull-right', style: "margin-top:-46px;margin-right:142px;" %>
@@ -60,7 +60,7 @@
 
 <hr>
 
-<h1>Listing projects</h1>
+<h1>joining projects</h1>
 
 <table>
   <tr>
@@ -70,16 +70,19 @@
     <th>End at</th>
   </tr>
 
+
   <% @joinings.each do |pro| %>
-      <% if pro.user_id == current_user.id  %>
-          <% @pros.each do |pro| %>
-            <tr>
-                <td><%= pro.name %></td>
-                <td><%= pro.description %></td>
-                <td><%= pro.start_at %></td>
-                <td><%= pro.end_at %></td>
-            </tr>
+      <% if pro.user_id == current_user.id %>
+          <% @join_pro = Project.where("id = ?", pro.project_id) %>
+          <% @join_pro.each do |mid| %>
+              <tr>
+                <td><%= mid.name %></td>
+                <td><%= mid.description %></td>
+                <td><%= mid.start_at %></td>
+                <td><%= mid.end_at %></td>
+              </tr>
           <% end %>
       <% end %>
   <% end %>
+
 </table>

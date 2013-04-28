@@ -3,7 +3,6 @@ class MyprojectsController < ApplicationController
   def index
     @user = current_user
     @joinings = Duty.all
-    @pros = Project.all
     @projects = Project.where("user_id = ?", @user.id)
 
     respond_to do |format|

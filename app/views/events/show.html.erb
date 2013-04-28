@@ -22,12 +22,12 @@
 
 <p>
   <b>Start at:</b>
-  <%= @event.start_at %>
+  <%= @event.start_at.strftime("%Y-%m-%d") %>
 </p>
 
 <p>
   <b>End at:</b>
-  <%= @event.end_at %>
+  <%= @event.end_at.strftime("%Y-%m-%d") %>
 </p>
 
 <p>

@@ -3,6 +3,6 @@ class MyeventsController < ApplicationController
 
   #events created by yourself
   def index
-    @events = current_user.events
+    @events = Event.where( "user_id = ?", current_user.id )
   end
 end

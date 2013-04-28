@@ -9,6 +9,5 @@ class CreateTasks < ActiveRecord::Migration
 
     add_index :tasks, :user_id
     add_index :tasks, :event_id
-    add_index :tasks, [:user_id, :event_id], unique: true
   end
 end

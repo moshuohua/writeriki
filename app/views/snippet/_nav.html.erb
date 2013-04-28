@@ -18,7 +18,7 @@
             <%= link_to '首页', projects_path %>
           </li>
           <li class="">
-            <%= link_to '我的项目', myproject_index_path %>
+            <%= link_to '项目', myproject_index_path %>
           </li>
           <li class="">
             <%= link_to '进程', process_index_path %>
@@ -50,8 +50,7 @@
               <li class="divider"></li>
               <li><%= link_to '查看所有事务', events_path %></li>
               <li><%= link_to '由你创建的事务', myevent_index_path %></li>
-              <li><a href="#"></a></li>
-              <li><a href="#"><strong>与你有关的事务</strong></a></li>
+              <li><%= link_to '与你有关的事务', task_index_path %></li>
               <li class="divider"></li>
               <li><%= link_to '创建新事务', new_event_path %></li>
               <li class="divider"></li>

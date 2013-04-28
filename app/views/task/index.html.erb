@@ -1,0 +1,20 @@
+
+<table>
+  <tr>
+    <th>Name</th>
+    <th>Content</th>
+  </tr>
+
+<% @tasks.each do |tip| %>
+  <% if tip.user_id == current_user.id %>
+      <% @task_tip = Event.where("id = ?", tip.event_id) %>
+          <% @task_tip.each do |dig| %>
+              <tr>
+                <td><%= dig.name %></td>
+                <td><%= dig.content %></td>
+              </tr>
+          <% end %>
+  <% end %>
+<% end %>
+
+</table>

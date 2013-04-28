@@ -3,6 +3,7 @@ class Event < ActiveRecord::Base
   has_event_calendar
 
   belongs_to :project
+
   has_many :users, :through => :tasks
   has_many :tasks, :dependent => :delete_all
 end

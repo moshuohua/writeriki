@@ -42,13 +42,8 @@ class EventsController < ApplicationController
   # POST /events.json
   def create
     @event = current_user.events.new(params[:event])
-    @user = User.all
-    @user.each do |i|
-      if params[:event][:appointment] == i.id
-        Task.create!(:user_id => @event.appointment, :event_id => @event.id)
-      end
-    end
-
+    @event.user_id = current_user.id
+    @event.tasks.build(:event_id => @event.id, :user_id => @event.appointment )
 
     respond_to do |format|
       if @event.save
