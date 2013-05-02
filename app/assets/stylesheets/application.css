@@ -39,6 +39,11 @@ body {
 .gravatar-style {
     margin:-15px -19px -12px 7px;
 }
+.table-avatar {
+    margin:-8px 0px -5px 0px;
+    width:30px;
+    height:30px;
+}
 .title-border-left {
     border-left: 8px solid #d14533;
     padding-left: 12px;

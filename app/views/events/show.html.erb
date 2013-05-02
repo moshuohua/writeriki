@@ -34,7 +34,25 @@
   <b>User:</b>
   <%= @event.user_id %>
 </p>
+  
+  <% @users = User.all %>
+  
+  <% if @event.user_id == current_user.id %>
+    <%= link_to 'Edit', edit_event_path(@event) %>
+    <%= link_to 'Destroy', event_path, method: :delete, data: { confirm: 'Are you sure?' } %>
+  <% elsif Task.find_all_by_user_id_and_event_id(current_user.id, @event.id).present? %>
+    <button class="btn btn-large">
+    这是
+      <% @users.each do |u| %>
+        <% if @event.user_id == u.id %>
+          <%= u.username %>
+        <% end %>
+      <% end %>
+    委派给你的任务></button>
+  <% else %>
+    <div class="btn">lalala</div>
+  <% end %>
 
-
-<%= link_to 'Edit', edit_event_path(@event) %> |
 <%= link_to 'Back', events_path %>
+
+

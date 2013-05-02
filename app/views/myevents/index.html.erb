@@ -1,16 +1,33 @@
-<h1>Listing events</h1>
+<h3 class="title-border-left">
+    My events
+</h3>
 
-<table>
+<div class="btn-group pull-right" style="margin-top: -46px;">
+    <button class="btn">排序</button>
+    <button class="btn dropdown-toggle" data-toggle="dropdown">
+      <span class="caret"></span>
+    </button>
+    <ul class="dropdown-menu">
+      <li class="divider"></li>
+      <li>
+        <a href="">从最新排序</a>
+      </li>
+      <li>
+        <a href="">从旧时排序</a>
+      </li>
+      <li class="divider"></li>
+    </ul>
+</div>
+
+<hr>
+
+<table class="table table-bordered table-hover">
   <tr>
-    <th>Name</th>
-    <th>Content</th>
-    <th>Level</th>
-    <th>Appointment</th>
-    <th>Start at</th>
-    <th>End at</th>
-    <th></th>
-    <th></th>
-    <th></th>
+    <th class="span3 table-mimi">名称</th>
+    <th class="span1 table-mimi">事务等级</th>
+    <th class="span1 table-mimi">起始时间</th>
+    <th class="span1 table-mimi">结束时间</th>
+    <th class="span1 table-mimi">委托人</th>
   </tr>
 
   <% @events.each do |event| %>
