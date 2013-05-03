@@ -18,7 +18,7 @@ class CommentsController < ApplicationController
     @comment = @commentable.comments.build(params[:comment])
     if @comment.save
       flash[:notice] = "Successfully saved comment."
-      redirect_to Doc.all
+      redirect_to :back
     else
       render :action => 'new'
     end
