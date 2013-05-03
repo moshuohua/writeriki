@@ -6,4 +6,6 @@ class Event < ActiveRecord::Base
 
   has_many :users, :through => :tasks
   has_many :tasks, :dependent => :delete_all
+  
+  has_many :comments, :as => :commentable
 end

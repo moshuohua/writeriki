@@ -23,27 +23,37 @@
 
 <table class="table table-bordered table-hover">
   <tr>
-    <th class="span4 table-mimi">名称</th>
-    <th class="span1 table-mimi">事务等级</th>
-    <th class="span1 table-mimi">起始时间</th>
-    <th class="span1 table-mimi">结束时间</th>
-    <th class="table-mimi" style="width:20px;">完成者</th>
-    <th class="table-mimi" style="width:20px;">发起者</th>
+    <th class="span4 t-center">名称</th>
+    <th class="span1 t-center">事务等级</th>
+    <th class="span1 t-center">起始时间</th>
+    <th class="span1 t-center">结束时间</th>
+    <th class="t-center" style="width:40px;">完成者</th>
+    <th class="t-center" style="width:40px;">发起者</th>
   </tr>
 
 
 <% @events.each do |event| %>
   <tr>
-    <td class="table-mimi"><%= link_to event.name, event %></td>
-    <td class="table-mimi"><%= event.level %></td>
-    <td class="table-mimi"><%= event.start_at.strftime("%Y-%m-%d") %></td>
-    <td class="table-mimi"><%= event.end_at.strftime("%Y-%m-%d") %></td>
+    <td class="t-center"><%= link_to event.name, event %></td>
+    <td class="t-center">
+      <% if event.level.to_s == "紧急" %>
+        <span class="label label-important">紧急</span>
+      <% elsif event.level.to_s == "重要" %>
+        <span class="label label-warning">重要</span>
+      <% elsif event.level.to_s == "较急" %>
+        <span class="label label-info">较急</span>
+      <% else event.level.to_s == "不急" %>
+        <span class="label label-success">不急</span>
+      <% end %>
+    </td>
+    <td class="t-center"><%= event.start_at.strftime("%Y-%m-%d") %></td>
+    <td class="t-center"><%= event.end_at.strftime("%Y-%m-%d") %></td>
 
-  <!---- list event.appoinment username ---->
+  <!-- list event.appoinment username -->
     <% @users = User.all %>
     <% @users.each do |u| %>
       <% if event.appointment.to_s == u.id.to_s %>
-        <td class="table-mimi">
+        <td class="t-center">
           <a href="" title=<%= u.username %> rel="tooltip" data-placement="left">
             <%= image_tag u.avatar.url(:thumb), class:"table-avatar" %>
           </a>
@@ -51,10 +61,10 @@
       <% end %>
     <% end %>
     
-  <!---- list event cteator username ---->
+  <!-- list event cteator username -->
     <% @users.each do |i| %>
       <% if event.user_id == i.id %>
-        <td class="table-mimi">
+        <td class="t-center">
           <a href="" title=<%= i.username %> rel="tooltip" data-placement="right">
             <%= image_tag i.avatar.url(:thumb), class:"table-avatar" %>
           </a>

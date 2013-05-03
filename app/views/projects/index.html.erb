@@ -40,18 +40,18 @@
 
 <table class="table table-bordered table-hover">
   <tr>
-    <th class="table-mimi span3">项目名称</th>
-    <th class="table-mimi">项目描述</th>
-    <th class="table-mimi span2">起始时间</th>
-    <th class="table-mimi span2">结束时间</th>
+    <th class="t-center span3">项目名称</th>
+    <th class="t-center">项目描述</th>
+    <th class="t-center span2">起始时间</th>
+    <th class="t-center span2">结束时间</th>
   </tr>
 
 <% @projects.each do |project| %>
   <tr>
-    <td class="table-mimi"><%= link_to project.name, project %></td>
-    <td class="table-mimi"><%= project.description %></td>
-    <td class="table-mimi"><%= project.start_at.strftime("%Y-%m-%d") %></td>
-    <td class="table-mimi"><%= project.end_at.strftime("%Y-%m-%d") %></td>
+    <td class="t-center"><%= link_to project.name, project %></td>
+    <td class="t-center"><%= project.description %></td>
+    <td class="t-center"><%= project.start_at.strftime("%Y-%m-%d") %></td>
+    <td class="t-center"><%= project.end_at.strftime("%Y-%m-%d") %></td>
 
   </tr>
 <% end %>

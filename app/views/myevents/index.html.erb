@@ -23,28 +23,38 @@
 
 <table class="table table-bordered table-hover">
   <tr>
-    <th class="span3 table-mimi">名称</th>
-    <th class="span1 table-mimi">事务等级</th>
-    <th class="span1 table-mimi">起始时间</th>
-    <th class="span1 table-mimi">结束时间</th>
-    <th class="span1 table-mimi">委托人</th>
+    <th class="span3 t-center">名称</th>
+    <th class="span1 t-center">事务等级</th>
+    <th class="span1 t-center">起始时间</th>
+    <th class="span1 t-center">结束时间</th>
+    <th class="span1 t-center"></th>
+    <th class="span1 t-center"></th>
+    <th class="span1 t-center"></th>
   </tr>
 
   <% @events.each do |event| %>
       <tr>
-        <td><%= event.name %></td>
-        <td><%= event.content %></td>
-        <td><%= event.level %></td>
-        <td><%= event.appointment %></td>
-        <td><%= event.start_at %></td>
-        <td><%= event.end_at %></td>
-        <td><%= link_to 'Show', event %></td>
-        <td><%= link_to 'Edit', edit_event_path(event) %></td>
-        <td><%= link_to 'Destroy', event, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td class="span1"><%= link_to event.name, event %></td>
+        <td class="t-center">
+      <% if event.level.to_s == "紧急" %>
+        <span class="label label-important">紧急</span>
+      <% elsif event.level.to_s == "重要" %>
+        <span class="label label-warning">重要</span>
+      <% elsif event.level.to_s == "较急" %>
+        <span class="label label-info">较急</span>
+      <% else event.level.to_s == "不急" %>
+        <span class="label label-success">不急</span>
+      <% end %>
+    </td>
+        <td class="span1 t-center"><%= event.start_at.strftime("%Y-%m-%d") %></td>
+        <td class="span1 t-center"><%= event.end_at.strftime("%Y-%m-%d") %></td>
+        <td class="span1 t-center"><%= link_to 'Show', event %></td>
+        <td class="span1 t-center"><%= link_to 'Edit', edit_event_path(event) %></td>
+        <td class="span1 t-center"><%= link_to 'Destroy', event, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
   <% end %>
 </table>
 
 <br />
 
-<%= link_to 'New Event', new_event_path %>
+<%= link_to 'New Event', new_event_path, class:"btn btn-danger" %>

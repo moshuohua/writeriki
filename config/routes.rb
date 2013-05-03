@@ -7,8 +7,14 @@ Writeriki::Application.routes.draw do
   devise_for :users
 
   resources :attachments
-  resources :discusses
-  resources :events
+  
+  resources :discusses do
+    resources :comments
+  end
+
+  resources :events do
+    resources :comments
+  end
   
   resources :docs do
     resources :comments

@@ -55,4 +55,30 @@
 
 <%= link_to 'Back', events_path %>
 
+<ul id="comments">
+  <% @event.comments.each do |comment| %>
+      <li><%=raw comment.content %></li>
+  <% end %>
+</ul>
+
+<h2>New Comment</h2>
+<%= form_for [@event, Comment.new] do |f| %>
+    <div class="field">
+      <%= f.label :content %><br />
+      <%= f.text_area :content, :rows => 5 %>
+    </div>
+    <div class="actions">
+      <%= f.submit "Add comment",:class => 'btn' %>
+    </div>
+<% end %>
+
+<!--  at.js  -->
+<script>
+  data = [ <% @users.each do |j| %>
+            "<%= j.username %>",
+           <% end %> ];
+  $('textarea').atwho("@",{'data':data});
+  limit: 6;
+</script>
+
 
