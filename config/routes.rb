@@ -1,6 +1,5 @@
 Writeriki::Application.routes.draw do
 
-  get "task/index"
 
   match '/calendar(/:year(/:month))' => 'calendar#index', :as => :calendar, :constraints => {:year => /\d{4}/, :month => /\d{1,2}/}
 
@@ -14,6 +13,9 @@ Writeriki::Application.routes.draw do
 
   resources :events do
     resources :comments
+    member do
+      get :asc
+    end
   end
   
   resources :docs do
@@ -26,11 +28,11 @@ Writeriki::Application.routes.draw do
     end
   end
 
-  match '/myproject/index' => 'myprojects#index'
-  match '/mydoc/index' => 'mydocs#index'
-  match '/myevent/index' => 'myevents#index'
-  match '/task/index' => 'tasks#index'
-  match '/process/index' => 'processes#index'
+  match '/myprojects' => 'myprojects#index', :as => 'myproject'
+  match '/mydocs' => 'mydocs#index', :as => 'mydoc'
+  match '/myevents' => 'myevents#index', :as =>'myevent'
+  match '/process' => 'processes#index', :as => 'process'
+  match '/tasks' => 'task#index', :as => 'task'
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

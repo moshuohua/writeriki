@@ -1,10 +1,10 @@
 <h3 class="title-border-left">
-  Projects created by yourself
+  创建的项目
 </h3>
 
-<%= link_to 'New Project', new_project_path, class:'btn btn-info pull-right', style: "margin-top:-46px;margin-right:142px;" %>
+<%= link_to '创建新项目', new_project_path, class:'btn btn-info pull-right', style: "margin-top:-46px;" %>
 
-<div class="btn-group pull-right" style="margin-top: -46px;">
+<!-- <div class="btn-group pull-right" style="margin-top: -46px;">
   <button class="btn">项目筛选方式</button>
   <button class="btn dropdown-toggle" data-toggle="dropdown">
     <span class="caret"></span>
@@ -22,36 +22,28 @@
     </li>
     <li class="divider"></li>
   </ul>
-</div>
+</div> -->
 
 <hr>
 
-<table>
+<table class="table table-bordered table-hover">
   <tr>
-    <th>Name</th>
-    <th>Description</th>
-    <th>Start at</th>
-    <th>End at</th>
-    <th></th>
-    <th></th>
-    <th></th>
+    <th class="t-center">Name</th>
+    <th class="t-center">Description</th>
+    <th class="t-center">Start at</th>
+    <th class="t-center">End at</th>
+    <th class="t-center"></th>
+    <th class="t-center"></th>
   </tr>
 
   <% @projects.each do |project| %>
       <tr>
-        <td><%= project.name %></td>
-        <td><%= project.description %></td>
-        <td><%= project.start_at %></td>
-        <td><%= project.end_at %></td>
-        <% if project.user_id == current_user.id %>
-            <td><%= link_to 'Show', project %></td>
-            <td><%= link_to 'Edit', edit_project_path(project) %></td>
-            <td><%= link_to 'Destroy', project, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-        <% else %>
-            <td><%= link_to 'Show', project %></td>
-            <td></td>
-            <td></td>
-        <% end %>
+        <td class="t-center"><%= link_to project.name, project %></td>
+        <td class="t-center"><%= project.description %></td>
+        <td class="t-center"><%= project.start_at.strftime("%Y-%m-%d") %></td>
+        <td class="t-center"><%= project.end_at.strftime("%Y-%m-%d") %>
+        <td class="t-center"><%= link_to '编辑', edit_project_path(project) %></td>
+        <td class="t-center"><%= link_to '删除', project, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
   <% end %>
 </table>
@@ -60,14 +52,16 @@
 
 <hr>
 
-<h1>joining projects</h1>
+<h3 class="title-border-left">
+  参加的项目
+</h3>
 
-<table>
+<table class="table table-bordered table-hover">
   <tr>
-    <th>Name</th>
-    <th>Description</th>
-    <th>Start at</th>
-    <th>End at</th>
+    <th class="t-center">Name</th>
+    <th class="t-center">Description</th>
+    <th class="t-center">Start at</th>
+    <th class="t-center">End at</th>
   </tr>
 
 
@@ -76,10 +70,10 @@
           <% @join_pro = Project.where("id = ?", pro.project_id) %>
           <% @join_pro.each do |mid| %>
               <tr>
-                <td><%= mid.name %></td>
-                <td><%= mid.description %></td>
-                <td><%= mid.start_at %></td>
-                <td><%= mid.end_at %></td>
+                <td class="t-center"><%= link_to mid.name, mid %></td>
+                <td class="t-center"><%= mid.description %></td>
+                <td class="t-center"><%= mid.start_at.strftime("%Y-%m-%d") %></td>
+                <td class="t-center"><%= mid.end_at.strftime("%Y-%m-%d") %></td>
               </tr>
           <% end %>
       <% end %>

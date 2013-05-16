@@ -83,4 +83,9 @@ class EventsController < ApplicationController
       format.json { head :no_content }
     end
   end
+
+  def asc
+    @event = Event.order('created_at ASC')
+  end
+  
 end
