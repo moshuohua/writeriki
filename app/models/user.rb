@@ -10,7 +10,7 @@ class User < ActiveRecord::Base
   attr_accessor :login
   attr_accessible :login, :username, :email, :password, :password_confirmation, :remember_me, :avatar, :avatar_cache, :remove_avatar
 
-  validates_presence_of :avatar
+  #validates_presence_of :avatar
   validates_integrity_of :avatar
   validates_processing_of :avatar
 

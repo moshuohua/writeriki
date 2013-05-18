@@ -1,9 +1,12 @@
 Writeriki::Application.routes.draw do
 
+  #get "activities/index"
 
   match '/calendar(/:year(/:month))' => 'calendar#index', :as => :calendar, :constraints => {:year => /\d{4}/, :month => /\d{1,2}/}
 
   devise_for :users
+
+  resources :activities
 
   resources :attachments
   
@@ -31,7 +34,6 @@ Writeriki::Application.routes.draw do
   match '/myprojects' => 'myprojects#index', :as => 'myproject'
   match '/mydocs' => 'mydocs#index', :as => 'mydoc'
   match '/myevents' => 'myevents#index', :as =>'myevent'
-  match '/process' => 'processes#index', :as => 'process'
   match '/tasks' => 'task#index', :as => 'task'
 
   # The priority is based upon order of creation:

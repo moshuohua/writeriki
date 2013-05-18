@@ -1,0 +1,184 @@
+<h5>动态进程</h5>
+<% @activities.each do |activity| %>
+  <% @users.each do |user| %>
+
+    <% if activity.key == "event.create" %>
+      <% @tips = "创建了任务" %>
+    <% elsif activity.key == "event.update" %>
+      <% @tips = "更新了任务" %>
+    <% elsif activity.key == "event.destroy" %>
+      <% @tips = "已经删除任务" %>
+    <% elsif activity.key == "doc.create" %>
+      <% @tips = "创建了文档" %>
+    <% elsif activity.key == "doc.update" %>
+      <% @tips = "更新了文档" %>
+    <% elsif activity.key == "doc.destroy" %>
+      <% @tips = "已经删除文档" %>
+    <% elsif activity.key == "discuss.create" %>
+      <% @tips = "创建了讨论" %>
+    <% elsif activity.key == "discuss.update" %>
+      <% @tips = "更新了讨论" %>
+    <% elsif activity.key == "discuss.destroy" %>
+      <% @tips = "已经删除讨论" %>
+    <% elsif activity.key == "file.create" %>
+      <% @tips = "创建了文件" %>
+    <% elsif activity.key == "file.update" %>
+      <% @tips = "更新了文件" %>
+    <% elsif activity.key == "file.destroy" %>
+      <% @tips = "已经删除文件" %>
+    <% elsif activity.key == "project.create" %>
+      <% @tips = "创建了项目" %>
+    <% elsif activity.key == "project.update" %>
+      <% @tips = "更新了项目" %>
+    <% elsif activity.key == "project.destroy" %>
+      <% @tips = "已经删除项目" %>
+    <% elsif activity.key == "duty.create" %>
+      <% @tips = "加入了项目" %>
+    <% elsif activity.key == "duty.destroy" %>
+      <% @tips = "退出了项目" %>
+    <% elsif activity.key == "comment.create" %>
+      <% @tips = "在" %>
+    <% end %>
+    <% @far = "发表了一条评论" %>
+
+    <% if activity.owner_id == user.id %>
+       <div class="media">
+            <a class="pull-left" href="">
+                <%= image_tag user.avatar.url(:thumb) %>
+            </a>
+            <div class="media-body">
+               <div class="media-heading">
+                <%= user.username %>
+               </div>
+          <!-- 对trackable_type进行判断，返回原始链接 -->
+              <!--判断项目-->
+              <% if activity.trackable_type.downcase == "project" %>
+                <% if activity.trackable %>
+                  <% @project = Project.find(activity.trackable_id) %>
+                  <%= @tips %>
+                  <%= link_to @project.name, @project %>
+                <% else %>
+                  <%= @tips %>
+                <% end %>
+                <div class="pull-right">
+                  <%= activity.updated_at.strftime("%Y-%m-%d %H:%M:%S") %>
+                </div>
+              <!--判断任务-->
+              <% elsif activity.trackable_type.downcase == "event" %>
+                <% if activity.trackable %>
+                  <% @event = Event.find(activity.trackable_id) %>
+                  <%= @tips %>
+                  <%= link_to @event.name, @event %>
+                <% else %>
+                  <%= @tips %>
+                <% end %>
+                <div class="pull-right">
+                  <%= activity.updated_at.strftime("%Y-%m-%d %H:%M:%S") %>
+                </div>
+              <!--判断项目与用户关联关系-->
+              <% elsif activity.trackable_type.downcase == "duty" %>
+                <% if activity.trackable %>
+                  <% @duty = Duty.find(activity.trackable_id) %>
+                  <% @project = Project.find(@duty.project_id) %>
+                  <%= @tips %>
+                  <%= link_to @project.name, @project %>
+                <% else %>
+                  <%= @tips %>
+                <% end %>
+                <div class="pull-right">
+                  <%= activity.updated_at.strftime("%Y-%m-%d %H:%M:%S") %>
+                </div>
+              <!--判断文档-->
+              <% elsif activity.trackable_type.downcase == "doc" %>
+                <% if activity.trackable %>
+                  <% @doc = Doc.find(activity.trackable_id) %>
+                  <%= @tips %>
+                  <%= link_to @doc.title, @doc %>
+                <% else %>
+                  <%= @tips %>
+                <% end %>
+                <div class="pull-right">
+                  <%= @doc.updated_at.strftime("%Y-%m-%d %H:%M:%S") %>
+                </div>
+              <!--判断讨论-->
+              <% elsif activity.trackable_type.downcase == "discuss" %>
+                <% if activity.trackable %>
+                  <% @discuss = Discuss.find(activity.trackable_id) %>
+                  <%= @tips %>
+                  <%= link_to @discuss.title, @discuss %>
+                <% else %>
+                  <%= @tips %>
+                <% end %>
+                <div class="pull-right">
+                  <%= @discuss.updated_at.strftime("%Y-%m-%d %H:%M:%S") %>
+                </div>
+              <!--判断附件-->
+              <% elsif activity.trackable_type.downcase == "attachment"%>
+                <% if activity.trackable %>
+                  <% @attachment = Attachment.find(activity.trackable_id) %>
+                  <%= @tips %>
+                  <%= link_to @attachment.name, @attachment %>
+                <% else %>
+                  <%= @tips %>
+                <% end %>
+                <div class="pull-right">
+                  <%= @attachment.updated_at.strftime("%Y-%m-%d %H:%M:%S") %>
+                </div>
+              <!--判断评论-->
+              <% elsif activity.trackable_type.downcase == "comment" %>
+              <!-- 如果为评论，则判断评论的出处，并返回相应的链接 -->
+                <% @comment = Comment.find(activity.trackable_id) %>
+                <% @commentable_type = @comment.commentable_type.downcase %>
+                <% @commentable_id = @comment.commentable_id %>
+                <% if @commentable_type == "doc" %>
+                  <% if activity.trackable %>
+                    <% @doc = Doc.find(@commentable_id) %>
+                    <%= @tips %>
+                    <%= link_to @doc.title, @doc %>
+                    <% @far = "发表了一条评论" %>
+                  <% end %>
+                  <div class="pull-right">
+                    <%= @doc.updated_at.strftime("%Y-%m-%d %H:%M:%S") %>
+                  </div>
+
+                <% elsif @commentable_type == "event" %>
+                  <% if activity.trackable %>
+                    <% @event = Event.find(@commentable_id) %>
+                    <%= @tips %>
+                    <%= link_to @event.name, @event %>
+                    <%= @far %>
+                  <% end %>
+                  <div class="pull-right">
+                    <%= @event.updated_at.strftime("%Y-%m-%d %H:%M:%S") %>
+                  </div>
+
+                <% elsif @commentable_type == "discuss" %>
+                  <% if activity.trackable %>
+                    <% @discuss = Discuss.find(@commentable_id) %>
+                    <%= @tips %>
+                    <%= link_to @discuss.title, @discuss %>
+                    <%= @far %>
+                  <% end %>
+                  <div class="pull-right">
+                    <%= @discuss.updated_at.strftime("%Y-%m-%d %H:%M:%S") %>
+                  </div>
+
+                <% elsif @commentable_type == "attachment" %>
+                  <% if activity.trackable %>
+                    <% @attachment = Attachment.find(@commentable_id) %>
+                    <%= @tips %>
+                    <%= link_to @attachment.name, @attachment %>
+                    <%= @far %>
+                  <% end %>
+                  <div class="pull-right">
+                    <%= @attachment.updated_at.strftime("%Y-%m-%d %H:%M:%S") %>
+                  </div>
+                <% end %>
+              <!-- end -->
+              <% end %>
+          <!--结束判断-->
+       </div>
+       <hr>
+    <% end %>
+  <% end %>
+<% end %>

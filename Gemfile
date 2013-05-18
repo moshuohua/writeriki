@@ -22,6 +22,9 @@ source 'http://ruby.taobao.org'
 # @ style for discuss
   gem 'jquery-atwho-rails'
 
+#activities feed
+  gem 'public_activity'
+
 #calendar
   gem 'event-calendar', :require => 'event_calendar'
   gem 'bootstrap-datepicker-rails'

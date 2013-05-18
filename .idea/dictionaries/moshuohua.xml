@@ -2,10 +2,15 @@
   <dictionary name="moshuohua">
     <words>
       <w>activeadmin</w>
+      <w>appoinment</w>
       <w>atwho</w>
+      <w>cteator</w>
       <w>googlenav</w>
       <w>gravatar</w>
       <w>joinings</w>
+      <w>jpeg</w>
+      <w>lalala</w>
+      <w>magick</w>
       <w>mongoid</w>
       <w>mydoc</w>
       <w>mydocs</w>
@@ -18,6 +23,7 @@
       <w>projectship</w>
       <w>projectships</w>
       <w>rolify</w>
+      <w>uploaders</w>
     </words>
   </dictionary>
 </component>

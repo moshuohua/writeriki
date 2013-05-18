@@ -1,2 +1,0 @@
-class ProcessesController < ApplicationController
-end
