@@ -26,6 +26,9 @@
           <li class="">
             <%= link_to '日历', calendar_path %>
           </li>
+          <li class="">
+            <%= link_to '邮件', messages_path %>
+          </li>
           <li class="divider-vertical"></li>
           <li class="dropdown">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
@@ -133,26 +136,12 @@
       </button>
       <div class="nav-collapse collapse">
         <form class="navbar-form pull-left">
-          <input type="text" style="width: 749px;" x-webkit-speech>
-          <button type="submit" class="btn btn-info">快速搜索</button>
+          <input type="text" style="width: 788px;" x-webkit-speech>
+          <button type="submit" class="btn btn-info">
+            <i class="icon icon-white icon-search"></i> 全站搜索一下
+          </button>
         </form>
-        <a href="/messages" id="email" class="btn btn-success" style="margin-left: 4px;">
-          <i class="icon icon-white icon-envelope"></i>
-          站内信
-        </a>
       </div>
     </div>
   </div>
 </div>
-
-<!--<script>
-    $(function () {
-       $('#email').popover({
-          html : true,
-          title: "This is a test",
-          content: "hello popover world",
-          placement: 'top',
-          trigger: 'click'
-      }).popover('hide');
-   });
-   </script>-->

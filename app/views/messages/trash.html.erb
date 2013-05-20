@@ -1,0 +1,27 @@
+<% provide(:title, '回收站') %>
+
+<h4 class="title-border-left">
+  站内信操作
+</h4>
+
+<%= render :partial => 'snippet/panel' %>
+
+<table class="table table-bordered">
+  <tr>
+    <th>id</th>
+    <th>topic</th>
+    <th>body</th>
+    <th></th>
+    <th></th>
+  </tr>
+
+  <% @messages.each do |message| %>
+      <tr>
+        <td><%= message.id %></td>
+        <td><%= link_to message.topic, message %></td>
+        <td><%= message.body %></td>
+        <td><%= link_to '永久删除', message,:method => :delete %></td>
+        <td><%= link_to '还原', :controller => :messages, :action => :restore %></td>
+      </tr>
+  <% end %>
+</table>

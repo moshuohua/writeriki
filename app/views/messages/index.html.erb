@@ -1,31 +1,8 @@
 <% provide(:title, '站内信') %>
 
-<h5 class="title-border-left">
-  所有信件
-</h5>
+<h4 class="title-border-left">
+  站内信操作
+</h4>
 
-<hr>
+<%= render :partial => 'snippet/panel' %>
 
-<table class="table table-bordered">
-  <tr>
-    <th>id</th>
-    <th>topic</th>
-    <th>body</th>
-    <th></th>
-    <th></th>
-  </tr>
-
-<% @messages.each do |message| %>
-  <tr>
-    <td><%= message.id %></td>
-    <td><%= link_to message.topic, message %></td>
-    <td><%= message.body %></td>
-    <td><%= link_to 'Show', message %></td>
-    <td><%= link_to 'Destroy', message, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-  </tr>
-<% end %>
-</table>
-
-<br />
-
-<%= link_to 'New Message', new_message_path %>

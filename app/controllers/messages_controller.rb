@@ -24,6 +24,10 @@ class MessagesController < ApplicationController
     end
   end
 
+  def reply
+    
+  end
+
   # GET /messages/new
   # GET /messages/new.json
   def new
@@ -40,31 +44,25 @@ class MessagesController < ApplicationController
   def create
     @to = User.find(params[:message][:to])
     current_user.send_message(@to, params[:message][:topic], params[:message][:body])
-    redirect_to "http://127.0.0.1:3000/messages"
+    redirect_to messages_url
   end
 
   # DELETE /messages/1
   # DELETE /messages/1.json
   def destroy
-    @message = current_user.messages.find(params[:id])
-    if @message.destroy
-      flash[:notice] = "All ok"
-    else
-      flash[:error] = "Fail"
-    end
-
-    respond_to do |format|
-      format.html { redirect_to messages_url }
-      format.json { head :no_content }
-    end
+    #@message = Message.find(params[:id])
+    #@message.destroy
+    #redirect_to projects_path
+    current_user.delete_message(ActsAsMessageable::Message.find(params[:id]))
+    redirect_to messages_url
   end
 
   def outbox
     @messages = current_user.sent_messages
   end
 
-  def allbox
-    @messages = current_user.messages
+  def inbox
+    @messages = current_user.received_messages
   end
 
   def trash
@@ -75,6 +73,7 @@ class MessagesController < ApplicationController
     current_user.deleted_messages.process do |m|
       m.restore # @alice restore 'm' message from trash
     end
+    redirect_to messages_url
   end
 
 end

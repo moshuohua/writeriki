@@ -1,5 +1,18 @@
 <% provide(:title, @message.topic) %>
 
+<h4 class="title-border-left">
+  站内信操作
+</h4>
+
+<div class=" pull-right" style="margin-top: -35px;">
+  <a href="/messages/new" class="btn btn-danger"><i class="icon icon-white icon-edit"></i> 写消息</a>
+  <a href="/inbox" class="btn"><i class="icon icon-folder-close"></i> 收信箱</a>
+  <a href="/outbox" class="btn"><i class="icon icon-circle-arrow-up"></i> 发信箱</a>
+  <a href="/trash" class="btn"><i class="icon icon-trash"></i> 回收站</a>
+</div>
+
+<hr>
+
 <%= @message.id %>
 <%= @message.topic %>
 <%= @message.body %>

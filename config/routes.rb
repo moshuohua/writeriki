@@ -3,6 +3,12 @@ Writeriki::Application.routes.draw do
   resources :messages
 
 
+  # 收信箱，发信箱，回收站
+  match '/inbox' => 'messages#inbox', :as => 'inbox'
+  match '/outbox' => 'messages#outbox', :as => 'outbox'
+  match '/trash' => 'messages#trash', :as => 'trash'
+  match '/trash/restore' => 'messages#restore', :as => 'restore'
+
   # get "activities/index"
 
   match '/calendar(/:year(/:month))' => 'calendar#index', :as => :calendar, :constraints => {:year => /\d{4}/, :month => /\d{1,2}/}
