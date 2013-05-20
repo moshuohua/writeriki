@@ -1,7 +1,6 @@
 <h5>动态进程</h5>
 <% @activities.each do |activity| %>
   <% @users.each do |user| %>
-
     <% if activity.key == "event.create" %>
       <% @tips = "创建了任务" %>
     <% elsif activity.key == "event.update" %>
@@ -177,6 +176,7 @@
               <!-- end -->
               <% end %>
           <!--结束判断-->
+            </div>
        </div>
        <hr>
     <% end %>

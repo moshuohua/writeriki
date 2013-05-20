@@ -2,6 +2,10 @@ class User < ActiveRecord::Base
   # Include default devise modules. Others available are:
   # :token_authenticatable, :confirmable,
   # :lockable, :timeoutable and :omniauthable
+
+  # for message system
+  acts_as_messageable :class_name => "Message"
+
   mount_uploader :avatar, AvatarUploader
 
   devise :database_authenticatable, :registerable,

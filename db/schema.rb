@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130517051723) do
+ActiveRecord::Schema.define(:version => 20130519191809) do
 
   create_table "activities", :force => true do |t|
     t.integer  "trackable_id"
@@ -92,6 +92,26 @@ ActiveRecord::Schema.define(:version => 20130517051723) do
   end
 
   add_index "events", ["user_id", "created_at"], :name => "index_events_on_user_id_and_created_at"
+
+  create_table "messages", :force => true do |t|
+    t.string   "topic"
+    t.text     "body"
+    t.integer  "received_messageable_id"
+    t.string   "received_messageable_type"
+    t.integer  "sent_messageable_id"
+    t.string   "sent_messageable_type"
+    t.boolean  "opened",                     :default => false
+    t.boolean  "recipient_delete",           :default => false
+    t.boolean  "sender_delete",              :default => false
+    t.datetime "created_at",                                    :null => false
+    t.datetime "updated_at",                                    :null => false
+    t.string   "ancestry"
+    t.boolean  "recipient_permanent_delete", :default => false
+    t.boolean  "sender_permanent_delete",    :default => false
+  end
+
+  add_index "messages", ["ancestry"], :name => "index_messages_on_ancestry"
+  add_index "messages", ["sent_messageable_id", "received_messageable_id"], :name => "acts_as_messageable_ids"
 
   create_table "projects", :force => true do |t|
     t.string   "name"

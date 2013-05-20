@@ -54,7 +54,7 @@
     <% @users.each do |u| %>
       <% if event.appointment.to_s == u.id.to_s %>
         <td class="t-center">
-          <a href="" title=<%= u.username %> rel="tooltip" data-placement="right">
+          <a href="" title="<%= u.username %>" rel="tooltip" data-placement="right">
             <%= image_tag u.avatar.url(:thumb), class:"table-avatar" %>
           </a>
         </td>
@@ -65,7 +65,7 @@
     <% @users.each do |i| %>
       <% if event.user_id == i.id %>
         <td class="t-center">
-          <a href="" title=<%= i.username %> rel="tooltip" data-placement="right">
+          <a href="" title="<%= i.username %>" rel="tooltip" data-placement="right">
             <%= image_tag i.avatar.url(:thumb), class:"table-avatar" %>
           </a>
         </td>

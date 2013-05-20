@@ -13,7 +13,9 @@
     <div class="container">
       <div class="row">
         <div class="span11">
-          <%= yield %>
+          <div data-pjax-container>
+            <%= yield %>
+          </div>
         </div>
       </div>
     </div>

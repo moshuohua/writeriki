@@ -18,6 +18,7 @@
  */
 body {
     background-image: url("/assets/bg.png");
+    font-family:  "微软雅黑" !important;
 }
 .span11 {
     background-color: #ffffff;

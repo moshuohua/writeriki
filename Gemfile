@@ -7,6 +7,9 @@ source 'http://ruby.taobao.org'
 
   gem 'sqlite3'
 
+# pjax
+  gem 'pjax_rails'
+
 # editor
   gem 'bootstrap-wysihtml5-rails'
 
@@ -24,6 +27,9 @@ source 'http://ruby.taobao.org'
 
 #activities feed
   gem 'public_activity'
+
+# message system
+  gem 'acts-as-messageable'
 
 #calendar
   gem 'event-calendar', :require => 'event_calendar'
