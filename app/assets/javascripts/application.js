@@ -12,7 +12,7 @@
 //
 //= require jquery
 //= require jquery_ujs
-//= require pjax
+//= require turbolinks
 //= require_tree .
 //= require twitter/bootstrap
 //= require bootstrap-wysihtml5
@@ -21,7 +21,4 @@
 //= require jquery.atwho
 //= require bootstrap-datepicker
 
-$(function() {
-    $('a:not([data-remote]):not([data-behavior]):not([data-skip-pjax])').pjax('[data-pjax-container]');
-});
 

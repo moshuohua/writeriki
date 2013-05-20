@@ -8,7 +8,10 @@ source 'http://ruby.taobao.org'
   gem 'sqlite3'
 
 # pjax
-  gem 'pjax_rails'
+  #gem 'pjax_rails'
+
+# turbolinks
+  gem 'turbolinks'
 
 # editor
   gem 'bootstrap-wysihtml5-rails'
