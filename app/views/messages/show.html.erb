@@ -1,4 +1,5 @@
-<p id="notice"><%= notice %></p>
+<% provide(:title, @message.topic) %>
+
 <%= @message.id %>
 <%= @message.topic %>
 <%= @message.body %>

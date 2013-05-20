@@ -58,4 +58,23 @@ class MessagesController < ApplicationController
       format.json { head :no_content }
     end
   end
+
+  def outbox
+    @messages = current_user.sent_messages
+  end
+
+  def allbox
+    @messages = current_user.messages
+  end
+
+  def trash
+    @messages = current_user.deleted_messages
+  end
+
+  def restore
+    current_user.deleted_messages.process do |m|
+      m.restore # @alice restore 'm' message from trash
+    end
+  end
+
 end
