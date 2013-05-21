@@ -5,7 +5,7 @@ class MessagesController < ApplicationController
   # GET /messages
   # GET /messages.json
   def index
-    @messages = current_user.messages
+    @messages = current_user.received_messages
 
     respond_to do |format|
       format.html # index.html.erb
@@ -17,15 +17,13 @@ class MessagesController < ApplicationController
   # GET /messages/1.json
   def show
     @message = current_user.messages.find(params[:id])
-
-    respond_to do |format|
-      format.html # show.html.erb
-      format.json { render json: @message }
-    end
+    @message.mark_as_unread
   end
 
   def reply
-    
+    @message = current_user.messages.find(params[:id])
+    @message.reply(params[:topic], params[:body])
+    redirect_to inbox_url
   end
 
   # GET /messages/new
@@ -42,9 +40,9 @@ class MessagesController < ApplicationController
   # POST /messages
   # POST /messages.json
   def create
-    @to = User.find(params[:message][:to])
-    current_user.send_message(@to, params[:message][:topic], params[:message][:body])
-    redirect_to messages_url
+      @to = User.find(params[:message][:to])
+      current_user.send_message(@to, params[:message][:topic], params[:message][:body])
+      redirect_to outbox_url
   end
 
   # DELETE /messages/1
@@ -54,7 +52,7 @@ class MessagesController < ApplicationController
     #@message.destroy
     #redirect_to projects_path
     current_user.delete_message(ActsAsMessageable::Message.find(params[:id]))
-    redirect_to messages_url
+    redirect_to trash_url
   end
 
   def outbox
@@ -73,7 +71,7 @@ class MessagesController < ApplicationController
     current_user.deleted_messages.process do |m|
       m.restore # @alice restore 'm' message from trash
     end
-    redirect_to messages_url
+    redirect_to inbox_url
   end
 
 end

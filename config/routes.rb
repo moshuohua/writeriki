@@ -1,6 +1,10 @@
 Writeriki::Application.routes.draw do
 
-  resources :messages
+  resources :messages do
+    member do
+      get :reply
+    end
+  end
 
 
   # 收信箱，发信箱，回收站
@@ -8,6 +12,7 @@ Writeriki::Application.routes.draw do
   match '/outbox' => 'messages#outbox', :as => 'outbox'
   match '/trash' => 'messages#trash', :as => 'trash'
   match '/trash/restore' => 'messages#restore', :as => 'restore'
+  match '/messages/:id/reply' => 'messages#reply'
 
   # get "activities/index"
 

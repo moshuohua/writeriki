@@ -4,17 +4,35 @@
   站内信操作
 </h4>
 
-<div class=" pull-right" style="margin-top: -35px;">
-  <a href="/messages/new" class="btn btn-danger"><i class="icon icon-white icon-edit"></i> 写消息</a>
-  <a href="/inbox" class="btn"><i class="icon icon-folder-close"></i> 收信箱</a>
-  <a href="/outbox" class="btn"><i class="icon icon-circle-arrow-up"></i> 发信箱</a>
-  <a href="/trash" class="btn"><i class="icon icon-trash"></i> 回收站</a>
-</div>
-
-<hr>
+<%= render :partial => 'snippet/panel' %>
 
 <%= @message.id %>
 <%= @message.topic %>
 <%= @message.body %>
 
-<%= link_to 'Back', messages_path %>
+<hr>
+
+<% @hello = @message.conversation %>
+<% @hello.each do |a| %>
+    <%= a.id %>
+<% end %>
+
+<%= link_to 'Back', inbox_path %>
+
+<%= form_tag(:action => 'reply') do %>
+    <div class="control-group">
+      <%= label_tag(:topic, "Topic:") %>
+      <div class="controls">
+        <%= text_field_tag(:topic) %>
+      </div>
+    </div>
+    <div class="control-group">
+      <%= label_tag(:body, "Body:") %>
+      <div class="controls">
+        <%= text_field_tag(:body) %>
+      </div>
+    </div>
+    <div class="control-group">
+      <%= submit_tag("Reply") %>
+    </div>
+<% end %>
