@@ -1,10 +1,12 @@
-<!-- title for the page -->
-<h3 class="title-border-left">
-  All Projects
-</h3>
+<% provide(:title, '所有项目') %>
 
-<!-- order by time -->
-<div class="btn-group pull-right" style="margin-top: -46px;">
+<!-- title for the page -->
+<h4 class="title-border-left">
+  所有项目
+</h4>
+
+<!--排序方法-->
+<div class="btn-group pull-right" style="margin-top: -39px;">
   <button class="btn">时间排序</button>
   <button class="btn dropdown-toggle" data-toggle="dropdown">
     <span class="caret"></span>
@@ -31,28 +33,88 @@
   </ul>
 </div>
 
-<form class="input-append pull-right" style="margin-top: -46px;margin-right: 120px;">
-  <input type="text" class="input-medium search-query">
+<form class="input-append pull-right" style="margin-top: -39px;margin-right: 120px;">
+  <input type="text" class="input-large search-query" placeholder="项目名称，发起人">
   <button type="submit" class="btn">Search</button>
 </form>
 
 <hr>
 
-<table class="table table-bordered table-hover">
+<table class="table table-bordered">
   <tr>
-    <th class="t-center span3">项目名称</th>
-    <th class="t-center">项目描述</th>
+    <th class="t-center span1">预览</th>
+    <th class="t-center span5">名称</th>
     <th class="t-center span2">起始时间</th>
     <th class="t-center span2">结束时间</th>
+    <th class="t-center span1">发起人</th>
+    <th class="t-center span1">成员</th>
   </tr>
 
-<% @projects.each do |project| %>
-  <tr>
-    <td class="t-center"><%= link_to project.name, project %></td>
-    <td class="t-center"><%= project.description %></td>
-    <td class="t-center"><%= project.start_at.strftime("%Y-%m-%d") %></td>
-    <td class="t-center"><%= project.end_at.strftime("%Y-%m-%d") %></td>
+  <!--当前用户创建的项目-->
+  <% @users = User.all %>
+  <% @projects.each do |project| %>
+        <tr>
+            <td class="t-center">
+                <a href="#preview" class="btn btn-info btn-block" data-toggle="modal">
+                    <i class="icon icon-white icon-eye-open"></i>
+                </a>
+            </td>
 
-  </tr>
-<% end %>
+            <!--项目情况预览-->
+            <div id="preview" class='modal hide fade'>
+              <div class="modal-header">
+                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                 <h4 id="myModalLabel" class="modal-title">
+                   <%= project.name %>
+                 </h4>
+              </div>
+              <div class="modal-body">
+                  <p>One fine body…</p>
+              </div>
+              <div class="modal-footer">
+                  <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
+                  <button class="btn btn-primary">Save changes</button>
+              </div>
+            </div>
+            <!--END-->
+
+            <td class="t-center"><%= link_to project.name, project %></td>
+            <td class="t-center"><%= project.start_at.strftime("%Y-%m-%d") %></td>
+            <td class="t-center"><%= project.end_at.strftime("%Y-%m-%d") %></td>
+            <% @users.each do |u| %>
+               <% if project.user_id.to_s == u.id.to_s %>
+                  <td class="t-center">
+                      <a href="" data-placement="right">
+                         <%= image_tag u.avatar.url(:thumb), class:"table-avatar" %>
+                      </a>
+                  </td>
+               <% end %>
+            <% end %>
+
+            <!--展示项目成员头像-->
+            <td class="t-center">
+                <a href="#" id=<%= project.id.to_s %> class="btn btn-block btn-info" data-placement='right' title="项目成员列表" data-toggle="popover">
+                  <%= project.id.to_s %>
+                </a>
+            </td>
+            <div id='mate_content' style="display:none;">
+              <p><%= Project.all.count %></p>
+            </div>
+            <!--END-->
+        </tr>
+
+<script type="text/javascript">
+    $(document).ready(function(){
+        $("<%= '#' + project.id.to_s %>").popover({
+            html : true,
+            content: function() {
+                return $('#mate_content').html();
+            }
+        });
+    });
+</script>
+
+  <% end %>
 </table>
+
+

@@ -1,11 +1,12 @@
 Writeriki::Application.routes.draw do
 
+  get "propart/index"
+
   resources :messages do
     member do
       get :reply
     end
   end
-
 
   # 收信箱，发信箱，回收站
   match '/inbox' => 'messages#inbox', :as => 'inbox'
@@ -58,6 +59,9 @@ Writeriki::Application.routes.draw do
 
   # 任务与用户的关系列表
   match '/tasks' => 'task#index', :as => 'task'
+
+  # 列举用户参加的项目
+  match '/joins' => 'propart#index', :as => 'joins'
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

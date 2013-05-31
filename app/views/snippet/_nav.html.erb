@@ -18,9 +18,6 @@
             <%= link_to '首页', projects_path %>
           </li>
           <li class="">
-            <%= link_to '项目', myproject_path %>
-          </li>
-          <li class="">
             <%= link_to '进程', activities_path %>
           </li>
           <li class="">
@@ -30,6 +27,20 @@
             <%= link_to '邮件', inbox_path %>
           </li>
           <li class="divider-vertical"></li>
+          <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+              项目
+              <b class="caret"></b>
+            </a>
+            <ul class="dropdown-menu">
+              <li class="divider"></li>
+              <li><%= link_to '创建的项目', myproject_path %></li>
+              <li><%= link_to '参加的项目', joins_path %></li>
+              <li class="divider"></li>
+              <li><%= link_to '创建新项目', new_project_path %></li>
+              <li class="divider"></li>
+            </ul>
+          </li>
           <li class="dropdown">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
               文档
@@ -46,16 +57,16 @@
           </li>
           <li class="dropdown">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-              事务
+              任务
               <b class="caret"></b>
             </a>
             <ul class="dropdown-menu">
               <li class="divider"></li>
-              <li><%= link_to '查看所有事务', events_path %></li>
-              <li><%= link_to '由你创建的事务', myevent_path %></li>
-              <li><%= link_to '与你有关的事务', task_path %></li>
+              <li><%= link_to '查看所有任务', events_path %></li>
+              <li><%= link_to '由你创建的任务', myevent_path %></li>
+              <li><%= link_to '与你有关的任务', task_path %></li>
               <li class="divider"></li>
-              <li><%= link_to '创建新事务', new_event_path %></li>
+              <li><%= link_to '创建新任务', new_event_path %></li>
               <li class="divider"></li>
             </ul>
           </li>

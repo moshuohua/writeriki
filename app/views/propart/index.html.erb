@@ -1,0 +1,30 @@
+<h4 class="title-border-left">
+  参加的项目
+</h4>
+
+<hr>
+
+<table class="table table-bordered table-hover">
+  <tr>
+    <th class="t-center">Name</th>
+    <th class="t-center">Description</th>
+    <th class="t-center">Start at</th>
+    <th class="t-center">End at</th>
+  </tr>
+
+
+  <% @joinings.each do |pro| %>
+      <% if pro.user_id == current_user.id %>
+          <% @join_pro = Project.where("id = ?", pro.project_id) %>
+          <% @join_pro.each do |mid| %>
+              <tr>
+                <td class="t-center"><%= link_to mid.name, mid %></td>
+                <td class="t-center"><%= mid.description %></td>
+                <td class="t-center"><%= mid.start_at.strftime("%Y-%m-%d") %></td>
+                <td class="t-center"><%= mid.end_at.strftime("%Y-%m-%d") %></td>
+              </tr>
+          <% end %>
+      <% end %>
+  <% end %>
+
+</table>
