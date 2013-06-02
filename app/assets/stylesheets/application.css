@@ -60,7 +60,15 @@ body {
     margin: 0px !important;
 }
 .modal-title {
-    border-left: 8px solid green;
+    border-left: 8px solid #d14533;
     padding-left: 15px;
     margin-left: -16px;
+}
+.title-left {
+  border-left: 10px solid #31b0d5;
+  margin-left: -42px;
+  padding-left: 31px;
+}
+.title-tell {
+  margin-top: 8px;
 }

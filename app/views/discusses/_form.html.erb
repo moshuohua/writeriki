@@ -1,4 +1,4 @@
-<%= form_for(@discuss) do |f| %>
+<%= form_for @discuss, :html => { class:'form-horizontal' } do |f| %>
   <% if @discuss.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@discuss.errors.count, "error") %> prohibited this discuss from being saved:</h2>
@@ -10,15 +10,54 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= f.label :title %>
-    <%= f.text_field :title, class:'span7' %>
+ <div class="control-group">
+     <%= f.label :project_name, class:"control-label" %>
+
+     <!--找出用户参加的项目，并填充到project_array数组中-->
+     <% @joins = Duty.all %>
+     <% project_array = Array.new %>
+     <% @joins.each do |j| %>
+       <% if j.user_id == current_user.id %>
+         <% @join_pro = Project.where("id = ?", j.project_id) %>
+         <% @join_pro.each do |join| %>
+           <% project_array.push( join.name, join.id) %>
+         <% end %>
+       <% end %>
+     <% end %>
+     <!--END-->
+
+     <!--提取用户自己创建的项目-->
+     <% @pros = Project.where("user_id = ?", current_user.id) %>
+     <% @pros.each do |pro| %>
+        <% project_array.push( pro.name, pro.id ) %>
+     <% end %>
+     <!--END-->
+
+     <% projects_array = Hash[*project_array.flatten] %>
+     <%= f.select :project_id, options_for_select(projects_array),{}, :id => 'e1',:class => 'span4' %>
+</div>
+
+  <div class="control-group">
+    <%= f.label :title, class:'control-label' %>
+    <div class="controls">
+      <%= f.text_field :title, class:'span7' %>
+    </div>
   </div>
-  <div class="field">
-    <%= f.label :content %>
+  <div class="control-group">
+    <%= f.label :content, class:'control-label' %>
+    <div class="controls">
     <%= f.text_area :content, class:'wysihtml5', :style => "width:570px; height:100px;" %>
+    </div>
   </div>
-  <div class="actions">
+  <div class="control-group">
+    <div class="controls">
     <%= f.submit(:class => "btn btn-success") %>
+    </div>
   </div>
 <% end %>
+
+<script>
+  $(document).ready(function() {
+    $("#e1").select2();
+  });
+</script>

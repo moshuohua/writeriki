@@ -3,6 +3,7 @@ class DiscussesController < ApplicationController
   # GET /discusses.json
   def index
     @discusses = Discuss.all
+    @users = User.all
 
     respond_to do |format|
       format.html # index.html.erb
@@ -41,6 +42,7 @@ class DiscussesController < ApplicationController
   # POST /discusses.json
   def create
     @discuss = Discuss.new(params[:discuss])
+    @discuss.user_id = current_user.id
 
     respond_to do |format|
       if @discuss.save

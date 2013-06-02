@@ -13,7 +13,27 @@
 
   <div class="field">
     <%= f.label :project_name %>
-    <% projects_array = Project.all.map { |project| [project.name, project.id] } %>
+    <!--找出用户参加的项目，并填充到project_array数组中-->
+     <% @joins = Duty.all %>
+     <% project_array = Array.new %>
+     <% @joins.each do |j| %>
+       <% if j.user_id == current_user.id %>
+         <% @join_pro = Project.where("id = ?", j.project_id) %>
+         <% @join_pro.each do |join| %>
+           <% project_array.push( join.name, join.id) %>
+         <% end %>
+       <% end %>
+     <% end %>
+     <!--END-->
+
+     <!--提取用户自己创建的项目-->
+     <% @pros = Project.where("user_id = ?", current_user.id) %>
+     <% @pros.each do |pro| %>
+        <% project_array.push( pro.name, pro.id ) %>
+     <% end %>
+     <!--END-->
+
+    <% projects_array = Hash[*project_array.flatten] %>
     <%= f.select :project_id, options_for_select(projects_array),{}, :id => 'e1',:class => 'span3' %>
   </div>
 

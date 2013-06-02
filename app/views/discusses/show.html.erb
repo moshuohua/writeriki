@@ -10,6 +10,6 @@
   <%= @discuss.content %>
 </p>
 
-
+<%= link_to 'Destroy', @discuss, method: :delete, data: { confirm: 'Are you sure?' } %></td>
 <%= link_to 'Edit', edit_discuss_path(@discuss) %> |
 <%= link_to 'Back', discusses_path %>

@@ -50,8 +50,9 @@
     <th class="t-center span1">成员</th>
   </tr>
 
+  <% member = Array.new %>
+
   <!--当前用户创建的项目-->
-  <% @users = User.all %>
   <% @projects.each do |project| %>
         <tr>
             <td class="t-center">
@@ -94,12 +95,29 @@
             <!--展示项目成员头像-->
             <td class="t-center">
                 <a href="#" id=<%= project.id.to_s %> class="btn btn-block btn-info" data-placement='right' title="项目成员列表" data-toggle="popover">
-                  <%= project.id.to_s %>
+                  <!--加入这个项目的用户数量-->
+                  <% @joins = Duty.where("project_id = ?", project.id) %>
+                  <% if @joins.present? %>
+                    <% @joins.each do |j| %>
+                      <% member << j.user_id.to_s %>
+                    <% end %>
+                  <% end %>
+                  <!--加上项目发起人本身-->
+                    <%= member.length + 1 %>
+                  <!--END-->
                 </a>
             </td>
             <div id='mate_content' style="display:none;">
-              <p><%= Project.all.count %></p>
+              <% @users.each do |u| %>
+                <% member.each do |m| %>
+                  <% if m.to_s == u.id.to_s %>
+                    <%= image_tag u.avatar.url(:thumb), class:'table-avatar' %>
+                  <% end %>
+                <% end %>
+              <% end %>
             </div>
+            <!--清空数组-->
+              <% member.clear %>
             <!--END-->
         </tr>
 

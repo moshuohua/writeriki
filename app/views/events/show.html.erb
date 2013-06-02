@@ -7,7 +7,7 @@
 
 <p>
   <b>Content:</b>
-  <%= @event.content %>
+  <%=raw @event.content %>
 </p>
 
 <p>
@@ -34,9 +34,9 @@
   <b>User:</b>
   <%= @event.user_id %>
 </p>
-  
+
   <% @users = User.all %>
-  
+
   <% if @event.user_id == current_user.id %>
     <%= link_to 'Edit', edit_event_path(@event) %>
     <%= link_to 'Destroy', event_path, method: :delete, data: { confirm: 'Are you sure?' } %>

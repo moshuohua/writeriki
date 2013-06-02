@@ -1,57 +1,66 @@
+<% provide(:title, @project.name) %>
+
 <p>
-  <b>项目名称:</b>
+  <b class="title-left">项目名称:&nbsp;&nbsp;</b>
   <%= @project.name %>
+  <span class='pull-right'><%= @project.end_at.strftime("%Y-%m-%d") %></span>
+  <b class="pull-right">结束时间:&nbsp;</b>
+  <span class="pull-right" style="margin-right:10px;"><%= @project.start_at.strftime("%Y-%m-%d") %></span>
+  <b class="pull-right">起始时间:&nbsp;</b>
 </p>
 
-<p>
-  <b>项目描述:</b>
-  <%=raw @project.description %>
-</p>
+<hr>
 
-<p>
-  <b>起始时间:</b>
-  <%= @project.start_at.strftime("%Y-%m-%d") %>
-</p>
+<div>
+  <b class="title-left">项目描述:</b>
+  <p class="title-tell"><%=raw @project.description %></p>
+</div>
 
-<p>
-  <b>结束时间:</b>
-  <%= @project.end_at.strftime("%Y-%m-%d") %>
-</p>
+<hr>
 
+<!-- 在此项目下的所有文档 -->
+<div>
+  <b class="title-left">所有文档：</b>
+  <ol class="title-tell">
+  <% @project.docs.each do |doc| %>
+    <li><%= link_to doc.title, doc %></li>
+  <% end %>
+</ol>
+</div>
+
+<hr>
+
+<!-- 在此项目下的所有事务 -->
+<div>
+  <b class="title-left">所有任务：</b>
+  <ol class="title-tell">
+  <% @project.events.each do |event| %>
+    <li><%= link_to event.name, event %></li>
+  <% end %>
+</div>
+
+<hr>
+
+<!-- 在此项目下的所有讨论 -->
+<div>
+  <b class="title-left">所有讨论：</b>
+  <ol class="title-tell">
+  <% @project.discusses.each do |discuss| %>
+    <li><%= link_to discuss.title, discuss %></li>
+  <% end %>
+</div>
+
+<hr>
+
+<!-- 在此项目下的所有文件资源 -->
 <% if @project.user_id == current_user.id %>
-    <%= link_to '编辑', edit_project_path(@project) %>
-    <%= link_to '删除', project_path, :method => :delete, :data => { :confirm => 'Are you sure?' } %>
+    <%= link_to '编辑', edit_project_path(@project), class:'btn btn-info' %>
+    <%= link_to '删除', project_path, :method => :delete, :data => { :confirm => 'Are you sure?' },class:'btn btn-danger' %>
 <% elsif Duty.find_all_by_user_id_and_project_id(current_user.id,@project.id).present?  %>
     <%= link_to '退出项目', quit_project_path, :class => 'btn btn-danger' %>
 <% else %>
     <%= link_to '加入项目', join_project_path, :class => 'btn btn-success' %>
 <% end %>
 
-<%= link_to '返回', projects_path %>
 
-<hr>
-
-<!-- 在此项目下的所有文档 -->
-<% @project.docs.each do |doc| %>
-    <tr>
-      <td class="span3"><%= link_to doc.title, doc %></td>
-      <td><%= doc.content %></td>
-      <td class="span3"><%= doc.keyword %></td>
-    </tr>
-<% end %>
-<hr>
-
-<!-- 在此项目下的所有事务 -->
-<% @project.events.each do |event| %>
-
-<% end %>
-<hr>
-
-<!-- 在此项目下的所有讨论 -->
-<% @project.discusses.each do |discuss| %>
-
-<% end %>
-<hr>
-
-<!-- 在此项目下的所有文件资源 -->
 

@@ -1,21 +1,31 @@
-<h1>Listing discusses</h1>
+<% provide(:title, '所有讨论') %>
 
-<table>
+<h4 class="title-border-left">
+  所有讨论
+</h4>
+
+<hr>
+
+<table class="table table-bordered">
   <tr>
-    <th>Title</th>
-    <th>Content</th>
-    <th></th>
-    <th></th>
-    <th></th>
+    <th class="t-center">标题</th>
+    <th class="t-center">讨论发起人</th>
+    <th class="t-center">回复数</th>
   </tr>
 
 <% @discusses.each do |discuss| %>
   <tr>
-    <td><%= discuss.title %></td>
-    <td><%= discuss.content %></td>
-    <td><%= link_to 'Show', discuss %></td>
-    <td><%= link_to 'Edit', edit_discuss_path(discuss) %></td>
-    <td><%= link_to 'Destroy', discuss, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+    <td><%= link_to discuss.title, discuss %></td>
+    <td class="t-center">
+      <% @users.each do |u| %>
+        <% if discuss.user_id.to_s == u.id.to_s %>
+          <%= image_tag u.avatar.url(:thumb), class:'table-avatar' %>
+        <% end %>
+      <% end %>
+    </td>
+    <td class="t-center">
+      <%= discuss.id %>
+    </td>
   </tr>
 <% end %>
 </table>
